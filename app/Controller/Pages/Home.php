@@ -11,12 +11,10 @@ class Home extends Page{
         $obOrganization = new Organization;
 
         $content = View::render('pages/home', [
-            'name' => $obOrganization->name,
-            'description' => $obOrganization->description,
-            'site' => $obOrganization->site
+            'name' => $obOrganization->name
         ]);
 
-        return parent::getPage('APP - MVC - HOME', $content);
+        return parent::getPage('HOME > MVC', $content);
     }
 
 }
