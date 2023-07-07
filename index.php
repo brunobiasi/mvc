@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/bootstrap/app.php';
 
 use \App\Http\Router;
 use \App\Utils\View;
@@ -13,6 +13,6 @@ View::init([
 
 $obRouter = new Router(URL);
 
-include __DIR__.'/routes/pages.php';
+include __DIR__ . '/routes/pages.php';
 
 $obRouter->run()->sendResponse();
