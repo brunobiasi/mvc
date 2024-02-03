@@ -6,13 +6,21 @@ use PDO;
 use PDOException;
 
 class Database {
-    const HOST = 'localhost';
-    const NAME = 'app_vagas';
-    const USER = 'root';
-    const PASS = '';
-
+    private static $host;
+    private static $name;
+    private static $user;
+    private static $pass;
+    private static $port;
     private $table;
     private $connection;
+
+    public static function config($host, $name, $user, $pass, $port = 3306) {
+        self::$host = $host;
+        self::$name = $name;
+        self::$user = $user;
+        self::$pass = $pass;
+        self::$port = $port;
+    }
 
     public function __construct($table = null) {
         $this->table = $table;
@@ -21,7 +29,7 @@ class Database {
 
     private function setConnection() {
         try {
-            $this->connection = new PDO('mysql:host=' . self::HOST . ';dbname=' . self::NAME, self::USER, self::PASS);
+            $this->connection = new PDO('mysql:host=' . self::$host . ';dbname=' . self::$name . ';port=' . self::$port, self::$user, self::$pass);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die('ERROR: ' . $e->getMessage());

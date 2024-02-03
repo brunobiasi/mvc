@@ -15,8 +15,13 @@ $obRouter->get('/sobre', [
     }
 ]);
 
-$obRouter->get('/pagina/{idPagina}/{acao}', [
-    function ($idPagina, $acao) {
-        return new Response(200, 'Página ' . $idPagina . ' - ' . $acao);
+$obRouter->get('/depoimentos', [
+    function () {
+        return new Response(200, Pages\Testimony::getTestimonies());
+    }
+]);
+$obRouter->post('/depoimentos', [
+    function ($request) {
+        return new Response(200, Pages\Testimony::insertTestimony($request));
     }
 ]);
