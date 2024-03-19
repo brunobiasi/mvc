@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  myapp:
+    build: .
+    container_name: myapp
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www/html
+
+  mysql:
+    image: mysql:8.1.0
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: teste
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/mysql:/var/lib/mysql

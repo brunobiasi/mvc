@@ -2,31 +2,16 @@
 <hr>
 
 <section id="testimonies">
-    <div class="card text-dark mb-3">
-        <h5 class="card-header">Bruno Biasi <small>12/01/2024</small></h5>
-        <div class="card-body">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias quaerat eum dolorum
-            perspiciatis rerum modi, quidem est consequatur ullam amet labore, porro atque mollitia veniam iure libero
-            laboriosam sunt animi?</div>
-    </div>
-    <div class="card text-dark mb-3">
-        <h5 class="card-header">Bruno Biasi <small>12/01/2024</small></h5>
-        <div class="card-body">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias quaerat eum dolorum
-            perspiciatis rerum modi, quidem est consequatur ullam amet labore, porro atque mollitia veniam iure libero
-            laboriosam sunt animi?</div>
-    </div>
-    <div class="card text-dark mb-3">
-        <h5 class="card-header">Bruno Biasi <small>12/01/2024</small></h5>
-        <div class="card-body">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias quaerat eum dolorum
-            perspiciatis rerum modi, quidem est consequatur ullam amet labore, porro atque mollitia veniam iure libero
-            laboriosam sunt animi?</div>
-    </div>
+    {{itens}}
+
+    {{pagination}}
 </section>
 
 <hr>
 
 <section id="form">
     <h3>Envie seu depoimento</h3>
-    <form method="post">
+    <form method="post" action="?page=1">
         <div class="form-group">
             <label>Nome</label>
             <input type="text" class="form-control" name="nome" required>
