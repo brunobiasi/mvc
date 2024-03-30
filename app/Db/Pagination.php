@@ -30,7 +30,7 @@ class Pagination {
         if ($this->pages == 1) return [];
 
         $paginas = [];
-        for ($i = 1; $i < $this->pages; $i++) {
+        for ($i = 1; $i <= $this->pages; $i++) {
             $paginas[] = [
                 'pagina' => $i,
                 'atual' => $i == $this->currentPage
