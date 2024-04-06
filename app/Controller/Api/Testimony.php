@@ -55,4 +55,63 @@ class Testimony extends Api {
             'data' => $obTestimony->data,
         ];
     }
+
+    public static function setNewTestimony($request) {
+        $postVars = $request->getPostVars();
+
+        if (!isset($postVars['nome']) or !isset($postVars['mensagem'])) {
+            throw new Exception("Os campos 'nome' e 'mensagem' são obrigatórios", 400);
+        }
+
+        $obTestimony = new EntityTestimony;
+        $obTestimony->nome = $postVars['nome'];
+        $obTestimony->mensagem = $postVars['mensagem'];
+        $obTestimony->cadastrar();
+
+        return [
+            'id' => $obTestimony->id,
+            'nome' => $obTestimony->nome,
+            'mensagem' => $obTestimony->mensagem,
+            'data' => $obTestimony->data,
+        ];
+    }
+
+    public static function setEditTestimony($request, $id) {
+        $postVars = $request->getPostVars();
+
+        if (!isset($postVars['nome']) or !isset($postVars['mensagem'])) {
+            throw new Exception("Os campos 'nome' e 'mensagem' são obrigatórios", 400);
+        }
+
+        $obTestimony = EntityTestimony::getTestimonyById($id);
+
+        if (!$obTestimony instanceof EntityTestimony) {
+            throw new Exception("O depoimento " . $id . " não foi encontrado", 404);
+        }
+
+        $obTestimony->nome = $postVars['nome'];
+        $obTestimony->mensagem = $postVars['mensagem'];
+        $obTestimony->atualizar();
+
+        return [
+            'id' => $obTestimony->id,
+            'nome' => $obTestimony->nome,
+            'mensagem' => $obTestimony->mensagem,
+            'data' => $obTestimony->data,
+        ];
+    }
+
+    public static function setDeleteTestimony($request, $id) {
+        $obTestimony = EntityTestimony::getTestimonyById($id);
+
+        if (!$obTestimony instanceof EntityTestimony) {
+            throw new Exception("O depoimento " . $id . " não foi encontrado", 404);
+        }
+
+        $obTestimony->excluir();
+
+        return [
+            'sucesso' => true
+        ];
+    }
 }
