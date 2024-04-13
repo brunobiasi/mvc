@@ -54,6 +54,16 @@ class User extends Api {
         ];
     }
 
+    public static function getCurrentUser($request) {
+        $obUser = $request->user;
+
+        return [
+            'id' => $obUser->id,
+            'nome' => $obUser->nome,
+            'email' => $obUser->email,
+        ];
+    }
+
     public static function setNewUser($request) {
         $postVars = $request->getPostVars();
 
