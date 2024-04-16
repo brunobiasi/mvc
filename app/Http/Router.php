@@ -48,6 +48,8 @@ class Router {
             $params['variables'] = $matches[1];
         }
 
+        $route = rtrim($route, '/');
+
         $patternRoute = '/^' . str_replace('/', '\/', $route) . '$/';
 
         $this->routes[$patternRoute][$method] = $params;
@@ -69,7 +71,7 @@ class Router {
         $this->addRoute('DELETE', $route, $params);
     }
 
-    private function getUri() {
+    public function getUri() {
         $uri = $this->request->getUri();
 
         $xUri = strlen($this->prefix) ? explode($this->prefix, $uri) : [$uri];
